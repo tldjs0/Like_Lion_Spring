@@ -17,6 +17,8 @@ import java.util.stream.Collectors;
 @RequestMapping("/api") // 공통 URL 경로 설정
 public class MemberController {
 
+    //히히
+
     // 회원 관련 비즈니스 로직을 처리하는 서비스
     private final MemberService memberService;
 
