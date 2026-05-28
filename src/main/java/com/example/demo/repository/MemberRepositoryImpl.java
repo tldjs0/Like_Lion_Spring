@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 
 @Slf4j // 로그 출력 기능 사용
-@Repository // Spring이 Repository 객체로 관리하도록 등록
+//@Repository // Spring이 Repository 객체로 관리하도록 등록
 public class MemberRepositoryImpl implements MemberRepository{
 
     // JSON 변환 객체 | 자바 객체 <-> JSON 변환 역할

@@ -3,14 +3,17 @@ package com.example.demo.service;
 import com.example.demo.domain.Member;
 import com.example.demo.repository.MemberRepository;
 import com.example.demo.utils.JwtUtil;
+
 import lombok.RequiredArgsConstructor;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service // Service 계층으로 등록 | 비즈니스 로직을 처리하는 클래스
 @RequiredArgsConstructor // final 필드를 사용하는 생성자 자동 생성
+@Transactional(readOnly = true)
 public class MemberService {
     private final MemberRepository memberRepository; // 회원 데이터 처리 Repository
     private final JwtUtil jwtUtil; // JWT 토큰 처리 유틸 클래스
@@ -19,6 +22,7 @@ public class MemberService {
         return memberRepository.findByUserId(jwtUtil.getClaimsFromJwt(token).getSubject());
     } // 토큰 안의 userId(subject)를 추출하여 회원 조회
 
+    @Transactional
     public Long signUp(Member member){
         String hashedPassword = BCrypt.hashpw(member.getPassword(), BCrypt.gensalt());//BCrypt 암호화하는 애
         member.setPassword(hashedPassword); // 암호화된 비밀번호 저장
@@ -30,6 +34,7 @@ public class MemberService {
 
     public Member findById(Long memberId) { return memberRepository.findById(memberId); } // 회원 id로 회원 조회
 
+    @Transactional
     public void update(Long id, String newName, String newPassword){ // 회원 정보 수정
         Member member = memberRepository.findById(id); // id로 회원 조회
 
@@ -42,6 +47,7 @@ public class MemberService {
         memberRepository.save(member); // 수정된 회원 정보 저장
     }
 
+    @Transactional
     public void delete(Long id) { memberRepository.remove(id); } // 회원 삭제
 
     public String login(String userId, String password) { // 로그인 기능

@@ -1,5 +1,9 @@
 package com.example.demo.domain;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,9 +11,12 @@ import lombok.Setter;
 @Setter //setter 메서드 자동 생성
 @Getter //getter 메서드 자동 생성
 @NoArgsConstructor //기본 생성자 자동 생성
+@Entity //JPA는 기본생성자 필수 NoArgsConstructor 어노테이션
 public class Member {
+    @Id @GeneratedValue
     //필드
     private Long id; //회원 고유 번호
+    @Column(unique = true)
     private String userId;
     private String password;
     private String username;
