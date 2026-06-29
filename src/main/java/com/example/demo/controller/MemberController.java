@@ -4,8 +4,6 @@ import com.example.demo.DTO.MemberDTO;
 import com.example.demo.domain.Member;
 import com.example.demo.service.MemberService;
 import com.example.demo.utils.JwtUtil;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +14,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor //final 필드의 생성자를 자동 생성
 @RequestMapping("/api") // 공통 URL 경로 설정
 public class MemberController {
-
-    //히히 하하 호호
 
     // 회원 관련 비즈니스 로직을 처리하는 서비스
     private final MemberService memberService;

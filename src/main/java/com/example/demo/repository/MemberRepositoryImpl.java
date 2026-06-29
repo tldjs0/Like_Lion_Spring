@@ -2,7 +2,6 @@ package com.example.demo.repository;
 
 import com.example.demo.domain.Member;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Repository;
 import tools.jackson.core.JacksonException;
 import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.ObjectMapper;
