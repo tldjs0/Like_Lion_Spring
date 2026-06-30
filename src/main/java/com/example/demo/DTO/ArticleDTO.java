@@ -2,11 +2,12 @@ package com.example.demo.DTO;
 
 import com.example.demo.domain.Article;
 import lombok.Data;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
-@Data
 public class ArticleDTO{
+    @Data
     public static class ArticleRes {
         private String title;
         private String content;
