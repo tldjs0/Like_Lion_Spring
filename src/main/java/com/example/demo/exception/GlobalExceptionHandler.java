@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(InvalidArticleIdException.class)
-    public ResponseEntity<String> InvalidArticleId(InvalidArticleIdException e){
+    public ResponseEntity<String> handleInvalidArticleId(InvalidArticleIdException e){
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(e.getMessage());

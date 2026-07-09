@@ -59,17 +59,17 @@ public class CommentService {
 
     @Transactional
     public String deleteComment(Long commentId, String token){
-        Optional<Comment> optionalComment = commentRepository.findById(commentId);
-
-        if(optionalComment.isEmpty()) return "존재하지 않는 댓글입니다.";
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new InvalidCommentIdException("존재하지 않는 댓글입니다."));
 
         Member member = memberService.tokenToMember(token);
-        if(member == null) return "인증되지 않은 사용자입니다.";
+        if(member == null){
+            throw new InvalidCommentIdException("인증되지 않은 사용자입니다.");
+        }
 
-        Comment comment = optionalComment.get();
-
-        if(!comment.getWriter().getId().equals(member.getId()))
-            return "댓글 삭제 권한이 없습니다.";
+        if(!comment.getWriter().getId().equals(member.getId())){
+            throw new InvalidCommentIdException("댓글 삭제 권한이 없습니다.");
+        }
 
         commentRepository.delete(comment);
         return "댓글이 성공적으로 삭제되었습니다.";
