@@ -1,9 +1,7 @@
 package com.example.demo.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.example.demo.enums.RoleType;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,6 +18,9 @@ public class Member {
     private String userId;
     private String password;
     private String username;
+
+    @Enumerated(EnumType.STRING)
+    private RoleType roleType = RoleType.MEMBER;
 
     //회원 생성 시 필요한 값을 초기화하는 생성자
     public Member(String userId, String password, String username){

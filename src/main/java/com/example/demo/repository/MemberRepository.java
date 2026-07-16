@@ -7,6 +7,7 @@ import java.util.List;
 
 //회원 데이터 저장소 기능을 정의하는 인터페이스
 //실제 DB 저장 방식은 구현 클래스에서 작성
+
 public interface MemberRepository {
     void save(Member member); //회원 저장
     Member findById(Long id); //회원 id로 회원 조회
